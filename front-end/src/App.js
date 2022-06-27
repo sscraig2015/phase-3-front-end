@@ -5,6 +5,8 @@ import Home from './components/Home'
 import CourseList from './components/CourseList'
 import ProfessorList from './components/ProfessorList' 
 import PageNotFound from './components/PageNotFound'
+import CourseDetail from './components/CourseDetail'
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
             <Route exact path = "/" element={ <Home /> }  />
             <Route exact path = "/professors" element={ <ProfessorList /> }  />
             <Route exact path = "/courses" element={ <CourseList /> }  />
+            <Route exact path = "/courses/:id" element={ <CourseDetail /> }  />
             <Route path="*" element={ <PageNotFound /> }  />
           </Routes>
           
