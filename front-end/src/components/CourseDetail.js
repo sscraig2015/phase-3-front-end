@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 
@@ -7,6 +7,7 @@ const CourseDetail = () => {
     
     const [course, setCourse] = useState([])
     const params = useParams()
+    const navigate = useNavigate();
  
     
     useEffect(() => {
@@ -18,12 +19,23 @@ const CourseDetail = () => {
           
     }, [])
     
+    function deleteCourse(){
+        fetch(`http://localhost:9292/courses/${params.id}`, { method:"DELETE"})
+            .then((resp) => resp.json())
+            .then((data) => console.log(data))
+
+            navigate("/courses")
+    }
+    
     if(course.length === 0) {
         return <h1>Loading...</h1>
     } else {
         return (
-            <div>  
+            <div>
+                
                 <h1>{course.subject}</h1>
+                <h3>Delete Course</h3>
+                <button onClick={deleteCourse} value="Delete Course"/>
                 <h3>Students</h3>
                 <ol>
                     {course.students.map((student) => {
